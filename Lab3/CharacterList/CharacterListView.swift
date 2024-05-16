@@ -12,25 +12,29 @@ struct CharacterListView: View {
     
     var body: some View {
         NavigationView {
-            if viewModel.isLoading {
-                ProgressView()
-            } else if let error = viewModel.error {
-                Text("Error: \(error.localizedDescription)")
-            } else {
-                List(viewModel.characters, id: \.name) { character in
-                    Text(character.name)
+            VStack{
+                if viewModel.isLoading {
+                    ProgressView()
+                } else if let error = viewModel.error {
+                    Text("Error: \(error.localizedDescription)")
+                } else {
+                    List(viewModel.characters, id: \.url) { character in
+                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(), character: character)) {
+                            Text(character.name)
+                        }
+                    }
                 }
-                .onAppear {
-                    viewModel.fetchCharacters()
-                }
-                .navigationBarTitle("Characters")
             }
+            .onAppear {
+                viewModel.fetchCharacters()
+            }
+            .navigationBarTitle("Characters")
         }
     }
 }
-    
-    struct CharacterListView_Previews: PreviewProvider {
-        static var previews: some View {
-            CharacterListView()
-        }
+
+struct CharacterListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CharacterListView()
     }
+}

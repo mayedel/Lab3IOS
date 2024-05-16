@@ -9,8 +9,10 @@ import Alamofire
 import Foundation
 
 class APIManager {
+    let url = "https://swapi.dev/api/people/"
+    
     func fetchCharacters(completion: @escaping ([Character]?) -> Void) {
-        AF.request("https://swapi.dev/api/people/").responseDecodable(of: CharacterListResponse.self) { response in
+        AF.request(url).responseDecodable(of: CharacterListResponse.self) { response in
             switch response.result {
             case .success(let result):
                 completion(result.results)

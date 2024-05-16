@@ -9,28 +9,27 @@ import Foundation
 
 class CharacterDetailViewModel: ObservableObject {
     @Published var isLoading: Bool = false
-    @Published var error: Error?
+    @Published var error: String?
     @Published var character: Character?
     private let characterUseCase = CharacterUseCase()
-    private let characterURL: String
     
-    init(characterURL: String) {
-        self.characterURL = characterURL
+    init(character: Character? = nil) {
+        self.character = character
     }
     
-    func fetchCharacterDetail() {
+    func fetchCharacterDetail(for character: Character) {
         isLoading = true
-        characterUseCase.fetchCharacterDetail(for: characterURL) { [weak self] character in
+        characterUseCase.fetchCharacterDetail(for: character.url) { [weak self] character in
             DispatchQueue.main.async {
                 self?.isLoading = false
                 if let character = character {
                     self?.character = character
                 } else {
-                    self?.error = NSError(domain: "CharacterDetailViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch character details"])
+                    self?.error = "Failed to fetch character details"
                 }
             }
         }
     }
-
+    
 }
 
