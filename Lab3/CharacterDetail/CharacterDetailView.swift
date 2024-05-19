@@ -14,7 +14,7 @@ struct CharacterDetailView: View {
     var body: some View {
         VStack {
             if let errorMessage = viewModel.error {
-                Text("Error: \(errorMessage)")
+                Text("Error: \(errorMessage.localizedDescription)")
             } else if let character = viewModel.character {
                 Text("Name: \(character.name)")
                 Text("Height: \(character.height)")
@@ -27,7 +27,7 @@ struct CharacterDetailView: View {
             } else {
                 Text("Loading...")
                     .onAppear {
-                        viewModel.fetchCharacterDetail(for: character)
+                        viewModel.fetchCharacterDetail()
                     }
             }
         }
@@ -56,7 +56,7 @@ struct CharacterDetailView_Previews: PreviewProvider {
             edited: "",
             url: ""
         )
-        let viewModel = CharacterDetailViewModel(character: sampleCharacter)
+        let viewModel = CharacterDetailViewModel(characterId: 1)
         return CharacterDetailView(viewModel: viewModel, character: sampleCharacter)
     }
 }

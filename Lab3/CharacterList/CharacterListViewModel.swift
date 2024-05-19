@@ -14,17 +14,18 @@ class CharacterListViewModel: ObservableObject {
     private let characterUseCase = CharacterUseCase()
     
     func fetchCharacters() {
-        isLoading = true
-        characterUseCase.fetchCharacters { [weak self] characters in
-            DispatchQueue.main.async {
-                self?.isLoading = false
-                if let characters = characters {
-                    self?.characters = characters
-                } else {
-                    self?.error = NSError(domain: "CharacterListViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch characters"])
-                }
-            }
-        }
-    }
+           isLoading = true
+           characterUseCase.fetchCharacters { [weak self] result in
+               DispatchQueue.main.async {
+                   self?.isLoading = false
+                   switch result {
+                   case .success(let characters):
+                       self?.characters = characters
+                   case .failure(let error):
+                       self?.error = error
+                   }
+               }
+           }
+       }
 
     }

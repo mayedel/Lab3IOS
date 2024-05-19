@@ -10,12 +10,25 @@ import Foundation
 class CharacterUseCase {
     let characterService = CharacterService()
     
-    func fetchCharacters(completion: @escaping ([Character]?) -> Void) {
-        characterService.fetchCharacters(completion: completion)
+    func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
+        characterService.fetchCharacters { characters in
+            if let characters = characters {
+                completion(.success(characters))
+            } else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch characters"])))
+            }
+        }
     }
     
-    func fetchCharacterDetail(for characterURL: String, completion: @escaping (Character?) -> Void) {
-        characterService.fetchCharacterDetail(for: characterURL, completion: completion)
+    func fetchCharacterDetail(number: Int, completion: @escaping (Result<Character, Error>) -> Void) {
+        characterService.fetchCharacterDetail(number: number) { character in
+            if let character = character {
+                completion(.success(character))
+            } else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch character detail"])))
+            }
+        }
     }
 }
+
 

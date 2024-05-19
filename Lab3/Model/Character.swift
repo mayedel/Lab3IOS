@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Character: Codable {
+struct Character: Codable, Identifiable {
+    var id: Int { return Int(url.split(separator: "/").last ?? "") ?? 0 }
     let name: String
     let height: String
     let mass: String

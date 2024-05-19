@@ -18,6 +18,7 @@
 		6C5608B52BE8FCC700DEDBF2 /* CharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5608B42BE8FCC700DEDBF2 /* CharacterUseCase.swift */; };
 		6C5608B72BE8FCDF00DEDBF2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5608B62BE8FCDF00DEDBF2 /* APIManager.swift */; };
 		6C5608BD2BE8FF8600DEDBF2 /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5608BC2BE8FF8600DEDBF2 /* CharacterService.swift */; };
+		6C8DCE802BF7CFA400211711 /* swapi.dev.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C8DCE7F2BF7CFA400211711 /* swapi.dev.pem */; };
 		6CF733502BEA350000D4AC09 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF7334F2BEA350000D4AC09 /* Alamofire */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		6C5608B42BE8FCC700DEDBF2 /* CharacterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUseCase.swift; sourceTree = "<group>"; };
 		6C5608B62BE8FCDF00DEDBF2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		6C5608BC2BE8FF8600DEDBF2 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
+		6C8DCE7F2BF7CFA400211711 /* swapi.dev.pem */ = {isa = PBXFileReference; lastKnownFileType = file; path = swapi.dev.pem; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				6C56089C2BE8FA6700DEDBF2 /* Lab3App.swift */,
+				6C8DCE7F2BF7CFA400211711 /* swapi.dev.pem */,
 				6C5608B82BE8FCF800DEDBF2 /* CharacterList */,
 				6C5608B92BE8FD0E00DEDBF2 /* CharacterDetail */,
 				6C5608BA2BE8FD2400DEDBF2 /* Model */,
@@ -188,6 +191,7 @@
 			files = (
 				6C5608A42BE8FA6B00DEDBF2 /* Preview Assets.xcassets in Resources */,
 				6C5608A12BE8FA6B00DEDBF2 /* Assets.xcassets in Resources */,
+				6C8DCE802BF7CFA400211711 /* swapi.dev.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

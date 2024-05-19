@@ -19,7 +19,7 @@ struct CharacterListView: View {
                     Text("Error: \(error.localizedDescription)")
                 } else {
                     List(viewModel.characters, id: \.url) { character in
-                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(), character: character)) {
+                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(characterId: character.id), character: character)) {
                             Text(character.name)
                         }
                     }
