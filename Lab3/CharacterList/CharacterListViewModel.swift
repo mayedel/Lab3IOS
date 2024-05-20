@@ -12,6 +12,11 @@ class CharacterListViewModel: ObservableObject {
     @Published var error: Error?
     @Published var characters: [Character] = []
     private let characterUseCase = CharacterUseCase()
+    @Published var characterId: Int?
+    
+//    init() {
+//            characterId = -1
+//        }
     
     func fetchCharacters() {
            isLoading = true
@@ -27,5 +32,9 @@ class CharacterListViewModel: ObservableObject {
                }
            }
        }
+    
+    func characterSelected(_ character: Character) {
+        self.characterId = character.id
+        }
 
     }

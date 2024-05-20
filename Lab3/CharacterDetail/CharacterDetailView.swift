@@ -16,14 +16,17 @@ struct CharacterDetailView: View {
             if let errorMessage = viewModel.error {
                 Text("Error: \(errorMessage.localizedDescription)")
             } else if let character = viewModel.character {
-                Text("Name: \(character.name)")
-                Text("Height: \(character.height)")
-                Text("Mass: \(character.mass)")
-                Text("Hair Color: \(character.hairColor)")
-                Text("Skin Color: \(character.skinColor)")
-                Text("Eye Color: \(character.eyeColor)")
-                Text("Birth Year: \(character.birthYear)")
-                Text("Gender: \(character.gender)")
+                CharacterDetailContent(character: character)
+//                List {
+//                    DetailRow(title: "Name", value: character.name)
+//                    DetailRow(title: "Height", value: character.height)
+//                    DetailRow(title: "Mass", value: character.mass)
+//                    DetailRow(title: "Hair Color", value: character.hairColor)
+//                    DetailRow(title: "Skin Color", value: character.skinColor)
+//                    DetailRow(title: "Eye Color", value: character.eyeColor)
+//                    DetailRow(title: "Birth Year", value: character.birthYear)
+//                    DetailRow(title: "Gender", value: character.gender)
+//                }
             } else {
                 Text("Loading...")
                     .onAppear {
@@ -33,6 +36,36 @@ struct CharacterDetailView: View {
         }
         .navigationTitle("Character Detail")
         
+    }
+}
+
+struct CharacterDetailContent: View {
+    let character: Character
+    
+    var body: some View {
+        List {
+            DetailRow(title: "Name", value: character.name)
+            DetailRow(title: "Height", value: character.height)
+            DetailRow(title: "Mass", value: character.mass)
+            DetailRow(title: "Hair Color", value: character.hairColor)
+            DetailRow(title: "Skin Color", value: character.skinColor)
+            DetailRow(title: "Eye Color", value: character.eyeColor)
+            DetailRow(title: "Birth Year", value: character.birthYear)
+            DetailRow(title: "Gender", value: character.gender)
+        }
+    }
+}
+
+struct DetailRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Text(value)
+        }
     }
 }
 

@@ -12,23 +12,45 @@ struct CharacterListView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack {
                 if viewModel.isLoading {
                     ProgressView()
                 } else if let error = viewModel.error {
                     Text("Error: \(error.localizedDescription)")
                 } else {
-                    List(viewModel.characters, id: \.url) { character in
-                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(characterId: character.id), character: character)) {
-                            Text(character.name)
-                        }
-                    }
+                    CharacterList(characters: viewModel.characters, characterSelected: viewModel.characterSelected)
+                    
+//                    List(viewModel.characters, id: \.url) { character in
+//                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(characterId: viewModel.characterId), character: character)) {
+//                            Text(character.name)
+//                        }
+//                        .onTapGesture {
+//                            viewModel.characterSelected(character)
+//                        }
+//                    }
                 }
+                Spacer()
             }
             .onAppear {
                 viewModel.fetchCharacters()
             }
             .navigationBarTitle("Characters")
+        }
+    }
+}
+
+struct CharacterList: View {
+    let characters: [Character]
+    let characterSelected: (Character) -> Void
+    
+    var body: some View {
+        List(characters, id: \.url) { character in
+            NavigationLink(destination: CharacterDetailView(viewModel: CharacterDetailViewModel(characterId: character.id), character: character)) {
+                Text(character.name)
+            }
+            .onTapGesture {
+                characterSelected(character)
+            }
         }
     }
 }
