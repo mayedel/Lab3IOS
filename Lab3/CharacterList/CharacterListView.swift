@@ -18,16 +18,14 @@ struct CharacterListView: View {
                 } else if let error = viewModel.error {
                     Text("Error: \(error.localizedDescription)")
                 } else {
-                    CharacterList(characters: viewModel.characters, characterSelected: viewModel.characterSelected)
-                    
-//                    List(viewModel.characters, id: \.url) { character in
-//                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(characterId: viewModel.characterId), character: character)) {
-//                            Text(character.name)
-//                        }
-//                        .onTapGesture {
-//                            viewModel.characterSelected(character)
-//                        }
-//                    }
+                    List(viewModel.characters, id: \.url) { character in
+                        NavigationLink(destination: CharacterDetailView(viewModel:CharacterDetailViewModel(characterId: character.id), character: character)) {
+                            Text(character.name)
+                        }
+                        //                        .onTapGesture {
+                        //                            viewModel.characterSelected(character)
+                        //                        }
+                    }
                 }
                 Spacer()
             }
@@ -35,22 +33,6 @@ struct CharacterListView: View {
                 viewModel.fetchCharacters()
             }
             .navigationBarTitle("Characters")
-        }
-    }
-}
-
-struct CharacterList: View {
-    let characters: [Character]
-    let characterSelected: (Character) -> Void
-    
-    var body: some View {
-        List(characters, id: \.url) { character in
-            NavigationLink(destination: CharacterDetailView(viewModel: CharacterDetailViewModel(characterId: character.id), character: character)) {
-                Text(character.name)
-            }
-            .onTapGesture {
-                characterSelected(character)
-            }
         }
     }
 }

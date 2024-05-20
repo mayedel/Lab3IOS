@@ -17,16 +17,6 @@ struct CharacterDetailView: View {
                 Text("Error: \(errorMessage.localizedDescription)")
             } else if let character = viewModel.character {
                 CharacterDetailContent(character: character)
-//                List {
-//                    DetailRow(title: "Name", value: character.name)
-//                    DetailRow(title: "Height", value: character.height)
-//                    DetailRow(title: "Mass", value: character.mass)
-//                    DetailRow(title: "Hair Color", value: character.hairColor)
-//                    DetailRow(title: "Skin Color", value: character.skinColor)
-//                    DetailRow(title: "Eye Color", value: character.eyeColor)
-//                    DetailRow(title: "Birth Year", value: character.birthYear)
-//                    DetailRow(title: "Gender", value: character.gender)
-//                }
             } else {
                 Text("Loading...")
                     .onAppear {

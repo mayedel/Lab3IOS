@@ -14,9 +14,6 @@ class CharacterListViewModel: ObservableObject {
     private let characterUseCase = CharacterUseCase()
     @Published var characterId: Int?
     
-//    init() {
-//            characterId = -1
-//        }
     
     func fetchCharacters() {
            isLoading = true
